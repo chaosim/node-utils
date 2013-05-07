@@ -39,7 +39,7 @@
 
 # usage: copy this file to your project, and then in your .coffee file:
 
-I = require("imorter")
+I = require("impporter")
 
 I.use "underscore: isString, isArray"
 
