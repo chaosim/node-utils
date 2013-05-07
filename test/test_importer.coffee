@@ -1,4 +1,4 @@
-I = require("../src/utils")
+I = require("../coffeescript/importer")
 
 _ = require("underscore")
 
@@ -9,7 +9,7 @@ exports.UtilsTest =
     test.ok(isString(''))
     [some, each] = I.from "underscore: some each"
     test.ok some([3,2], (x) -> x>1)
-    I.at "underscore.first, underscore.last"
+    I.at "underscore:first, underscore:last"
     test.equal (first [3,2]), 3
     test.equal (last [3,2]), 2
     test.done()

@@ -2,7 +2,7 @@
 (function() {
   var I, _;
 
-  I = require("../src/utils");
+  I = require("../src/importer");
 
   _ = require("underscore");
 
@@ -16,7 +16,7 @@
       test.ok(some([3, 2], function(x) {
         return x > 1;
       }));
-      I.at("underscore.first, underscore.last");
+      I.at("underscore:first, underscore:last");
       test.equal(first([3, 2]), 3);
       test.equal(last([3, 2]), 2);
       return test.done();
@@ -38,16 +38,16 @@
         name = _ref[_i];
         delete global[name];
       }
-      return I.with_(_, " isString some", function() {
+      I.with_(_, " isString some", function() {
         test.ok(isString(''));
         test.ok(some([3, 2], function(x) {
           return x > 1;
         }));
-        test.throws(function() {
+        return test.throws(function() {
           return first([3, 2]);
         });
-        return test.done();
       });
+      return test.done();
     },
     "test I.with_": function(test) {
       var name, _i, _len, _ref;
@@ -71,5 +71,5 @@
 }).call(this);
 
 /*
-//@ sourceMappingURL=test_utils.map
+//@ sourceMappingURL=test_importer.map
 */
