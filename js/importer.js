@@ -39,11 +39,11 @@
 
 I = require("imorter")
 
-I.use "underscore: isString, isArray"
-I.at "underscore.first, underscore.last"
-I.all "underscore and_other_module_path"
+I.use("underscore: isString, isArray")
+I.at("underscore.first, underscore.last")
+I.all("underscore and_other_module_path")
 
- underscore = require("underscore")
+underscore = require("underscore")
 
 I.with_(underscore, " isString some", function() {
     test.ok(isString(''));
