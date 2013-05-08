@@ -2,6 +2,5 @@
 , "version" : "0.1.0"
 , "description" : "utilities for node.js"
 , "author" : "Caoxingming <simeon.chaos@gmail.com> (https://github.com/chaosim)"
-, "main" : "js/importer"
 , "engines" : { "node" : ">=0.1.90" }
 }

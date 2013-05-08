@@ -42,7 +42,7 @@ either expressed or implied, of Caoxingmingi.
 # javascript:
 new Set(data)
 set(data)
-  method: add, remove, keys, union, has
+  method: add, remove, keys, union, has.
 
 # SEE test/test_set.js for more information
 
@@ -51,10 +51,11 @@ set(data)
 new Set(data)
 set(data)
 
-method: add, remove, keys, union, has
+method: add, remove, keys, union, has.
 
 # SEE test/test_set.coffee for more information
 ######################################################################################_ = require "underscore"
+_ = require "underscore"
 
 Set = class exports.Set
   constructor: (data) ->
@@ -80,5 +81,11 @@ Set = class exports.Set
       for x in other.keys() then result.add(x)
     else for x of other then result.add(x)
     result
+  copy: () -> new Set(@.keys())
+  merge: (container_list...) ->
+    result = @copy()
+    for x in container_list
+      result = result.union(x)
+    return result
 
 exports.set = (data) -> new Set(data)

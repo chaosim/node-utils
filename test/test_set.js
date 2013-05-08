@@ -21,16 +21,15 @@
         e: 1,
         d: 1
       })).has('e'));
+      test.ok(set([1, 2]).copy.has(2));
+      test.ok(set([1, 2]).merge([3], set([4, 5])).has(5));
       return test.done();
     }
   };
 
-  xexports.UtilsTest = {
+  exports.UtilsTest = {
     test: function(test) {
-      test.ok(set([1, 2]).union({
-        e: 1,
-        d: 1
-      }).has('e'));
+      test.ok(set([1, 2]).merge([3], set([4, 5])).has(5));
       return test.done();
     }
   };
