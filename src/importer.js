@@ -44,6 +44,8 @@ either expressed or implied, of Caoxingmingi.
 
 I = require("imorter")
 
+I.require_multiple("path/to/module1 path/to/module2")
+
 I.use("underscore: isString, isArray")
 I.at("underscore:first, underscore:last")
 I.all("underscore and_other_module_path")
@@ -69,6 +71,8 @@ I.with_(underscore, " isString some", function() {
         return test.equal(first([3, 2]), 3);
       });
 
+I.set_global(obj, names)
+
 # SEE test/test_importer.js for more information
 
 # in coffeescript:
@@ -80,6 +84,8 @@ I.use "underscore: isString, isArray"
 I.at "underscore:first, underscore:last"
 
 I.all "underscore and_other_module_path"
+
+I.require_multiple "path/to/module1 path/to/module2"
 
 underscore = require "underscore"
 
@@ -93,16 +99,18 @@ I.with_ underscore, ->
   test.ok some([3,2], (x) -> x>1)
   test.equal (first [3,2]), 3
 
+I.set_global obj, names
+
 # SEE test/test_importer.coffee for more information
 */
 
 
 (function() {
-  var path_namesSplit, reElements, split;
+  var comman_space_splitter, path_namesSplit, reElements, split;
 
   exports.version = '0.1.0';
 
-  exports.comman_space_splitter = reElements = /\s*,\s*|\s+/;
+  comman_space_splitter = reElements = /\s*,\s*|\s+/;
 
   path_namesSplit = /:[ \t]+/;
 
@@ -138,6 +146,18 @@ I.with_ underscore, ->
         }
         return _results1;
       })());
+    }
+    return _results;
+  };
+
+  exports.require_multiple = function(path_list) {
+    var path, _i, _len, _ref, _results;
+
+    _ref = split(path_list, reElements);
+    _results = [];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      path = _ref[_i];
+      _results.push(require(path));
     }
     return _results;
   };

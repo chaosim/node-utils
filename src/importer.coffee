@@ -43,6 +43,8 @@ either expressed or implied, of Caoxingmingi.
 
 I = require("imorter")
 
+I.require_multiple("path/to/module1 path/to/module2")
+
 I.use("underscore: isString, isArray")
 I.at("underscore:first, underscore:last")
 I.all("underscore and_other_module_path")
@@ -68,6 +70,8 @@ I.with_(underscore, " isString some", function() {
         return test.equal(first([3, 2]), 3);
       });
 
+I.set_global(obj, names)
+
 # SEE test/test_importer.js for more information
 
 # in coffeescript:
@@ -79,6 +83,8 @@ I.use "underscore: isString, isArray"
 I.at "underscore:first, underscore:last"
 
 I.all "underscore and_other_module_path"
+
+I.require_multiple "path/to/module1 path/to/module2"
 
 underscore = require "underscore"
 
@@ -92,12 +98,14 @@ I.with_ underscore, ->
   test.ok some([3,2], (x) -> x>1)
   test.equal (first [3,2]), 3
 
+I.set_global obj, names
+
 # SEE test/test_importer.coffee for more information
 ######################################################################################
 
 exports.version = '0.1.0'
 
-exports.comman_space_splitter = reElements = /\s*,\s*|\s+/
+comman_space_splitter = reElements = /\s*,\s*|\s+/
 path_namesSplit = /:[ \t]+/
 
 exports.split = split = (str, sep) -> x for x in str.split(sep) when x
@@ -107,6 +115,9 @@ exports.all = (path_list) ->
   for path in split path_list,  reElements
     modu = require(path)
     global[name] = value for name, value of modu
+
+exports.require_multiple = (path_list) ->
+  require(path) for path in split path_list,  reElements
 
 # [Environment, Compiler] = from "compilebase", "Environment, Compiler"
 exports.from  = (path_names) ->

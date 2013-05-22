@@ -144,20 +144,53 @@ method: add, remove, keys, union, has.
       return result;
     };
 
+    Set.prototype.unionAt = function(other) {
+      var x, _i, _j, _len, _len1, _ref;
+
+      if (_.isString(other) || _.isArray(other)) {
+        for (_i = 0, _len = other.length; _i < _len; _i++) {
+          x = other[_i];
+          this.add(x);
+        }
+      } else if (other instanceof Set) {
+        _ref = other.keys();
+        for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+          x = _ref[_j];
+          this.add(x);
+        }
+      } else {
+        for (x in other) {
+          this.add(x);
+        }
+      }
+      return this;
+    };
+
     Set.prototype.copy = function() {
       return new Set(this.keys());
     };
 
     Set.prototype.merge = function() {
-      var container_list, result, x, _i, _len;
+      var containers, result, x, _i, _len;
 
-      container_list = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      containers = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       result = this.copy();
-      for (_i = 0, _len = container_list.length; _i < _len; _i++) {
-        x = container_list[_i];
+      for (_i = 0, _len = containers.length; _i < _len; _i++) {
+        x = containers[_i];
         result = result.union(x);
       }
       return result;
+    };
+
+    Set.prototype.mergeAt = function() {
+      var containers, x, _i, _len;
+
+      containers = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+      for (_i = 0, _len = containers.length; _i < _len; _i++) {
+        x = containers[_i];
+        this.unionAt(x);
+      }
+      return this;
     };
 
     return Set;

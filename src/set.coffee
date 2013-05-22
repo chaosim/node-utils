@@ -81,11 +81,23 @@ Set = class exports.Set
       for x in other.keys() then result.add(x)
     else for x of other then result.add(x)
     result
+  unionAt: (other) ->
+    if _.isString(other) or _.isArray(other)
+      for x in other then @add(x)
+    else if other instanceof Set
+      for x in other.keys() then @add(x)
+    else for x of other then @add(x)
+    @
+
   copy: () -> new Set(@.keys())
-  merge: (container_list...) ->
+  merge: (containers...) ->
     result = @copy()
-    for x in container_list
+    for x in containers
       result = result.union(x)
     return result
+  mergeAt: (containers...) ->
+    for x in containers
+      @.unionAt(x)
+    @
 
 exports.set = (data) -> new Set(data)
