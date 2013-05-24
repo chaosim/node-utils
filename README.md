@@ -1,6 +1,6 @@
 
 # Installation
-Just copy files in importer.js folder to your node.js project and import it with the require function. See included files for an example.
+Just copy files in importer.js, set.js or utils.js to your node.js project and import it with the require function. See included files for an example.
 ## usage
 copy this file to your project and then:
 ```javascript
