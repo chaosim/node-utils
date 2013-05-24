@@ -1,13 +1,8 @@
 
-## Version:
-0.1.0
-
-Installation:
+# Installation
 Just copy files in importer.js folder to your node.js project and import it with the require function. See included files for an example.
-
 ## usage
 copy this file to your project and then:
-
 ```javascript
 // javascript
 
@@ -73,7 +68,6 @@ I.set_global obj, names
 
 # SEE test/test_importer.coffee for more information
 ```
-
 ## Bugs
 Please report bugs to https://github.com/chaosim/node-utils/issues
 
