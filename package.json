@@ -1,6 +1,34 @@
-{ "name" : "node-utils"
-, "version" : "0.1.0"
+{ "name" : "node-utilities"
+, "version" : "0.1.1"
 , "description" : "utilities for node.js"
+,"main": "./src/importer"
+, "directories":{"lib":"./src"}
 , "author" : "Caoxingming <simeon.chaos@gmail.com> (https://github.com/chaosim)"
-, "engines" : { "node" : ">=0.1.90" }
+, "engines" : { "node" : "*" }
+, "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/chaosim/node-utils.git"
+ },
+"bugs" : {
+    "url" : "https://github.com/chaosim/node-utils/issues"
+},
+"licenses" : [
+    {
+        "type" : "MIT",
+        "url" : "https://github.com/caolan/async/raw/master/LICENSE"
+    }
+],
+"jam": {
+    "main": "src/importer.js",
+    "include": [
+        "src/set.coffee",
+        "src/utils.coffee",
+        "src/importer.coffee",
+        "README.md",
+        "LICENSE"
+    ]
+},
+"scripts": {
+    "test": "nodeunit test/test-importer.js"
+}
 }
