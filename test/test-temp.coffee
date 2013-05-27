@@ -64,3 +64,23 @@ exports.UtilsTest =
       constructor: (@args...) ->
       new A([1,2]...)
     test.done()
+
+exports.Test =
+  test: (test) ->
+    class BaseView
+      @TYPE: 'base'
+      toString: ->  "#{@$TYPE} view"
+      myString: -> "#{@$$.TYPE}"
+      Object.defineProperty @::, '$$',  get: -> @constructor
+      for prop of @
+        proxy = '$' + prop
+        Object.defineProperty @::, proxy, do (prop) ->
+          get: -> @constructor[prop]
+          set: (val) -> @constructor[prop] = val
+
+    class ListView extends BaseView
+      @TYPE: 'list'
+    v = new ListView
+    test.equal v.toString(), "list view"
+    test.equal v.myString(), "list"
+    test.done()

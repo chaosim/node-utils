@@ -153,6 +153,68 @@
     }
   };
 
+  exports.Test = {
+    test: function(test) {
+      var BaseView, ListView, v, _ref;
+
+      BaseView = (function() {
+        var prop, proxy;
+
+        function BaseView() {}
+
+        BaseView.TYPE = 'base';
+
+        BaseView.prototype.toString = function() {
+          return "" + this.$TYPE + " view";
+        };
+
+        BaseView.prototype.myString = function() {
+          return "" + this.$$.TYPE;
+        };
+
+        Object.defineProperty(BaseView.prototype, '$$', {
+          get: function() {
+            return this.constructor;
+          }
+        });
+
+        for (prop in BaseView) {
+          proxy = '$' + prop;
+          Object.defineProperty(BaseView.prototype, proxy, (function(prop) {
+            return {
+              get: function() {
+                return this.constructor[prop];
+              },
+              set: function(val) {
+                return this.constructor[prop] = val;
+              }
+            };
+          })(prop));
+        }
+
+        return BaseView;
+
+      })();
+      ListView = (function(_super) {
+        __extends(ListView, _super);
+
+        function ListView() {
+          _ref = ListView.__super__.constructor.apply(this, arguments);
+          return _ref;
+        }
+
+        ListView.TYPE = 'list';
+
+        return ListView;
+
+      })(BaseView);
+      v = new ListView;
+      test.equal(v.toString(), "list view");
+      test.equal(v.myString(), "list");
+      return test.done();
+    }
+  };
+
 }).call(this);
 
 /*

@@ -38,9 +38,14 @@ I.with_(underscore, " isString some", function() {
 I.set_global(obj, names)
 
 // SEE test/test_importer.js for more information
- ```
+**update**: 2013-5-27
+huh, in coffescript, all of these stuff become  UNNECESSARY.
+because the destructive assign syntax in coffeescript.
+
 ```coffeescript
 # coffeescript
+
+{a, b, c} = require "path/to/module"
 
 I = require("impporter")
 
