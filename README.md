@@ -45,7 +45,7 @@ because the destructive assign syntax in coffeescript.
 ```coffeescript
 # coffeescript
 
-{a, b, c} = require "path/to/module"
+{a, b, c, d} = require "path/to/module"
 
 I = require("impporter")
 
